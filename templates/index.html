@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wymiana umiejętności</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('inbox') }}">Inbox</a></li>
+        <li><a href="{{ url_for('account') }}">Account</a></li>
+        <li><a href="{{ url_for('new_offer') }}">New offer</a></li>
+    </ul>
+</nav>
+
+<h1>Search skill to exchange</h1>
+<form method="GET">
+    <input type="text" name="search" placeholder="Search offers">
+    <input type="text" name="city" placeholder="Enter city">
+    <button type="submit">Search</button>
+</form>
+
+<div id="data-container">
+    {% for offer in offers %}
+    <div class="offer-block">
+        <h2>{{ offer['title'] }}</h2>
+        <p><strong>City:</strong> {{ offer['city'] }}</p>
+        <p>{{ offer['description'] }}</p>
+    </div>
+    {% else %}
+    <p>No offers found.</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
